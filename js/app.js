@@ -30,90 +30,96 @@ igual = document.getElementById('igual');
     function press1(){
       if (pantalla.textContent == '0') {
         pantalla.textContent = '1';
-      }else if(num <= 6){
+      }else if(num <= 7){
         pantalla.textContent = pantalla.textContent + '1';
-        num++;
       }
+        num++;
     }
     function press2(){
       if (pantalla.textContent == '0') {
         pantalla.textContent = '2' ;
-      }else if(num <= 6){
+      }else if(num <= 7){
         pantalla.textContent = pantalla.textContent + '2';
-        num++;
       }
+        num++;
     }
     function press3(){
       if (pantalla.textContent == '0') {
         pantalla.textContent = '3' ;
-      }else if(num <= 6){
+      }else if(num <= 7){
         pantalla.textContent = pantalla.textContent + '3';
-        num++;
       }
+        num++;
     }
     function press4(){
       if (pantalla.textContent == '0') {
         pantalla.textContent = '4' ;
-      }else if(num <= 6){
+      }else if(num <= 7){
         pantalla.textContent = pantalla.textContent + '4';
-        num++;
       }
+        num++;
     }
     function press5(){
       if (pantalla.textContent == '0') {
         pantalla.textContent = '5' ;
-      }else if(num <= 6){
+      }else if(num <= 7){
         pantalla.textContent = pantalla.textContent + '5';
-        num++;
       }
+        num++;
     }
     function press6(){
       if (pantalla.textContent == '0') {
         pantalla.textContent = '6' ;
-      }else if(num <= 6){
+      }else if(num <= 7){
         pantalla.textContent = pantalla.textContent + '6';
-        num++;
       }
+        num++;
     }
     function press7(){
       if (pantalla.textContent == '0') {
         pantalla.textContent = '7' ;
-      }else if(num <= 6){
+      }else if(num <= 7){
         pantalla.textContent = pantalla.textContent + '7';
-        num++;
       }
+        num++;
     }
     function press8(){
       if (pantalla.textContent == '0') {
         pantalla.textContent = '8' ;
-      }else if(num <= 6){
+      }else if(num <= 7){
         pantalla.textContent = pantalla.textContent + '8';
-        num++;
       }
+        num++;
     }
     function press9(){
       if (pantalla.textContent == '0') {
         pantalla.textContent = '9' ;
-      }else if(num <= 6){
+      }else if(num <= 7){
         pantalla.textContent = pantalla.textContent + '9';
-        num++;
+
       }
+      num++;
     }
     function press0(){
       if (pantalla.textContent == '0') {
         pantalla.textContent = '0' ;
-      }else if(num <= 6){
+      }else if(num <= 7){
         pantalla.textContent = pantalla.textContent + '0';
         num++;
       }
     }
     function pressS(){
       if (pantalla.textContent != '0') {
+        contar = pantalla.textContent.length;
+        if (contar > 8) {
+          pantalla.textContent.slice(0,8);
+        }
         op1 = parseFloat(pantalla.textContent);
         pantalla.textContent = '';
         operacion = 1;
         num = 0;
-
+        punto = 0;
+        igual = 0;
         /*pantalla.textContent = '';
         oper = '+';
         */
@@ -121,43 +127,132 @@ igual = document.getElementById('igual');
 
     }
 
-    function pressIgual(){
-      if (operacion == 1){
-        op2 = parseFloat(pantalla.textContent);
-        pantalla.textContent = Number(op1 + op2,6);
-        igual = 1;
-        num = 0;
-      }
-    }
-    /*
+
     function pressR(){
-      pantalla.textContent = pantalla.textContent + '2' ;
-    }
-    function pressM(){
-      pantalla.textContent = pantalla.textContent + '2' ;
-    }
-    function pressD(){
-      pantalla.textContent = pantalla.textContent + '2' ;
-    }*/
-    function pressP(){
-      if ((pantalla.textContent == '0' || pantalla.textContent == '') && punto != 1) {
-        pantalla.textContent = '0.' ;
-        punto = 2;
-      }else if (punto != 1 && num <= 6) {
-        pantalla.textContent = pantalla.textContent + '.';
-        punto = 1;
-        num++;
+      if (pantalla.textContent != '0') {
+        op1 = parseFloat(pantalla.textContent);
+        pantalla.textContent = '';
+        operacion = 2;
+        num = 0;
+        punto = 0;
+        igual = 0;
       }
     }
 
+    function pressM(){
+      if (pantalla.textContent != '0') {
+        op1 = parseFloat(pantalla.textContent);
+        pantalla.textContent = '';
+        operacion = 3;
+        num = 0;
+        punto = 0;
+        igual = 0;
+      }else{
+        op1 = parseFloat(pantalla.textContent);
+        pantalla.textContent = '';
+      }
+    }
+    function pressD(){
+      if (pantalla.textContent != '0') {
+        op1 = parseFloat(pantalla.textContent);
+        pantalla.textContent = '';
+        operacion = 4;
+        num = 0;
+        punto = 0;
+        igual = 0;
+      }else pantalla.textContent = 'DIV BY 0';
+    }
+
+    function pressIgual(){
+      if (operacion == 1){
+        if (igual == 1) {
+          res = op2 + parseFloat(pantalla.textContent);
+          pantalla.textContent = res;
+
+        }else{
+          op2 = parseFloat(pantalla.textContent);
+          res = op1 + op2;
+          pantalla.textContent = res;
+          igual = 1;
+
+        }
+
+      }else if (operacion == 2){
+        if (igual == 1) {
+          res = parseFloat(pantalla.textContent) - op2;
+          pantalla.textContent = res;
+          punto = 0;
+        }else{
+          op2 = parseFloat(pantalla.textContent);
+          res = op1 - op2;
+          pantalla.textContent = res;
+          igual = 1;
+        }
+      }else if (operacion == 3){
+        if (igual == 1) {
+          res = op2 * parseFloat(pantalla.textContent);
+          pantalla.textContent = res;
+        }else{
+          op2 = parseFloat(pantalla.textContent);
+          res = op1 * op2;
+          if (res.length >= 8) {
+            pantalla.textContent = 'MAS DE 8';
+          }
+          pantalla.textContent = res;
+          igual = 1;
+        }
+      }else if (operacion == 4){
+        if (igual == 1) {
+          res = op2 / parseFloat(pantalla.textContent);
+          pantalla.textContent = res;
+        }else{
+          op2 = parseFloat(pantalla.textContent);
+          res = op1 / op2;
+          if (res.length >= 8) {
+            pantalla.textContent = 'MAS DE 8';
+          }
+          pantalla.textContent = res;
+          igual = 1;
+
+        }
+      }
+      //Cuenta caracteres en pantalla
+        contar = pantalla.textContent.length;
+        if (contar >= 8) {
+          if (pantalla.textContent.slice(8,9) == '.') {
+            pantalla.textContent = pantalla.textContent.slice(0,8);
+          }else
+            pantalla.textContent = pantalla.textContent.slice(0,9);
+
+        }else{
+          pantalla.textContent = pantalla.textContent.slice(0,9);
+        }
+        punto = 0;
+        num = 0;
+    }
+
+    function pressP(){
+      if ((pantalla.textContent == '0' || pantalla.textContent == '') && punto != 1) {
+        pantalla.textContent = '0.' ;
+        punto = 1;
+      }else if (punto != 1 && num <= 6) {
+        pantalla.textContent = pantalla.textContent + '.';
+        punto = 1;
+      }
+    }
+    //AGREGA MAS DE UN SIGNO
     function pressSigno(){
+      signo=0;
       if (pantalla.textContent == '0') {
         pantalla.textContent = '0';
-      }else if (signo != 1 && num <= 6) {
+      }else if (pantalla.textContent <  0) {
+        pantalla.textContent = pantalla.textContent * -1;
+        //signo = 0;
+      }else if (signo == 0 && num <= 6) {
         pantalla.textContent = '-' + pantalla.textContent;
         signo = 1;
-        num++;
       }
+      //signo++;
     }
 
     function pressC(){
@@ -165,7 +260,10 @@ igual = document.getElementById('igual');
       punto = 0;
       num = 0;
       signo = 0;
-      oper = 0;
+      operacion = 0;
+      op1 = 0;
+      op2 = 0;
+      res = 0;
     }
 var Eventos = {
 	init: function(){
